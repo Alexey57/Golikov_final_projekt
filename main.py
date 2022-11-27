@@ -11,33 +11,13 @@ with open('C:/Users/папа/PycharmProjects/Golikov_final_projekt/model/data/mo
 
 
 class Form(BaseModel):
-    session_id: str
-    hit_date: str
-    hit_number: int
-    hit_type: str
-    event_category: str
-    event_action: str
-    client_id: int
-    visit_date: str
-    visit_time: str
-    visit_number: int
-    utm_source: str
-    utm_medium: str
-    utm_campaign: str
-    utm_adcontent: str
-    device_category: str
-    device_brand: str
-    device_screen_resolution: str
-    device_browser: str
-    geo_country: str
-    geo_city: str
+    utm_source: object
+    utm_medium: object
+    device_category: object
+    geo_city: object
 
 
 class Prediction(BaseModel):
-    utm_source: str
-    utm_medium: str
-    device_category: str
-    geo_city: str
     predict: int
 
 
@@ -57,4 +37,4 @@ def predict(form: Form):
     y = model['model'].predict(df)
     y = y[0]
 
-    return {'city': df.geo_city, 'device': df.device_category, 'source': df.utm_source, 'pred': y}
+    return {'predict': y}
